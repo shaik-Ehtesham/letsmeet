@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Login Form</title>
+    <link rel="stylesheet" href="../static/css/viewevent.css">
+      <link href="../static/css/landingpage.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../static/imgs/Logo.jpg">
+    <link rel="stylesheet" media="screen and (max-width: 700px)" href="../static/css/responsive.css"
+</head>
+<body>
+<div class="container">
+         <section class="nav-bar" id="nav-bar">
+            <div class="left-name">
+                <h1 class="name"><span class="red">L</span>et's <span class="red">M</span>eet</h1>
+            </div>
+            <input type="checkbox" id="check">
+            <label class="checkbtn" for="check">
+                <i class="fa fa-bars" ></i>
+            </label>
+            <nav class="right-nav">
+                    <li><a href="/CreateEvent/">Create Event</a></li>
+                    <li><a href="/MyEvents/">My Events</a></li>
+                    <li><a href="/">Events</a></li>
+                    {% if not login_status %}
+                    <li><a href="/login/" >Login</a></li>
+                    <li><a href="/signup/">Sign Up</a></li>
+                    {% else %}
+                    <li><a href="/signout/">SignOut</a></li>
+                    {% endif %}
+            </nav>
+        </section>
+    <div class="vieweve-container">
+        <div class="eveimg">
+            <img src="/ViewImg/{{event['logo_id']}}" alt="Logo">
+        </div>
+        <div class="container1">
+            <h1 id="eventtitle">{{event['title']}}</h1>
+            <h3>Conducted by:</h3>
+            <p id="Conductedby">{{event['conductedby']}}</p>
+            <h3>Location</h3>
+            <p id="location">{{event['address']}}</p>
+            <h3>Description:</h3>
+            <p id="description">{{event['desc']}}</p>
+            <h3>Event Type</h3>
+            <p id="Event Type">{{event['eventtype']}}</p>
+        </div>
+        <div class="applybtn">
+            {% if not applied %}
+            <button class="apply" onclick="window.location.href='/ApplyEvent/{{event['id']}}'">Apply</button>
+            {% endif %}
+        </div>
+       
+    </div>
+
+</div>
+</body>
+</html>

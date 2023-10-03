@@ -1,0 +1,8 @@
+flask
+flask_mail
+pymongo
+certifi
+pytz
+pandas
+xlsxwriter
+gunicorn

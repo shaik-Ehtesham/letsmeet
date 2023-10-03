@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Login</h2>
+            </div>
+            <form action="/login/" method="post">
+                <div class="uandp">
+                    <div class="form-group">
+                        <div class="error-msg">
+                            {{msg}}
+                        </div>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+            
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                
+                <div class="subbtn">
+                    <button type="submit" class="btn">Login</button>
+                </div>
+                <div class="ddiv">
+                    <p><a href="{{url_for('signup')}}" class="dont">Dont have an account?</a></p>
+                </div>
+                
+                
+            </form>
+        </div>
+    </div>
+
+   
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/landingpage.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../static/imgs/Logo.jpg">
+    <link rel="stylesheet" media="screen and (max-width: 700px)" href="../static/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/date-picker.css">
+    <title>Let's Meet</title>
+</head>
+<body>
+    <!-- navbar section -->
+    <div class="container">
+        <section class="nav-bar" id="nav-bar">
+            <div class="left-name">
+                <h1 class="name"><span class="red">L</span>et's <span class="red">M</span>eet</h1>
+            </div>
+            <input type="checkbox" id="check">
+            <label class="checkbtn" for="check">
+                <i class="fa fa-bars" ></i>
+            </label>
+            <nav class="right-nav">
+                    <li><a href="/CreateEvent/">Create Event</a></li>
+                    <li><a href="/MyEvents/">My Events</a></li>
+                    <li><a href="#events">Events</a></li>
+                    {% if not login_status %}
+                    <li><a href="/login/" >Login</a></li>
+                    <li><a href="/signup/">Sign Up</a></li>
+                    {% else %}
+                    <li><a href="/signout/">SignOut</a></li>
+                    {% endif %}
+            </nav>
+        </section>
+    
+    
+    
+    
+        <!-- hero section -->
+        <section id="hero-section" class="hero container">
+            <div class="left-side">
+                <h1>Let's Meet</h1>
+                <h6>Find Amazing Events</h6>
+                
+                <h3><span class="typing"></span></h3>
+                <div class="buttons">
+                    <a href="#events"><button class="button1 btn">Get Started</button></a>
+                </div>
+            </div>
+            <div class="right-side">
+                    <img src="../static/imgs/meetup.jpg" class="heroimg">
+            </div>
+        </section>
+    
+    
+    
+    
+    
+        <!-- About Section -->
+        <section id="events" class="about container">
+            <div class="title">
+                <h1>Events</h1>
+            </div>
+            <div class="about-container">
+                <div class="date-picker-main mb-2">
+                    <div class="date-picker-container">
+                    <button class="date-picker-button btn btn-primary">Date</button>
+                    <div class="date-picker">
+                        <div class="date-picker-header">
+                            <button class="prev-month-button month-button">&larr;</button>
+                            <div class="current-month">date</div>
+                            <button class="next-month-button month-button">&rarr;</button>
+                        </div>
+                        <div class="date-picker-grid-header date-picker-grid">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div class="date-picker-grid-dates date-picker-grid">
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                            <button class="date"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="book-events">
+                {% if events==[] %}
+                <p>No Events On This Date</p>
+                {% else %}
+                {% for event in events %}
+                <div class="card">
+                    <div class="title"></div>
+                    <div class="details">
+                      <h1><b>{{ event['title'] }}</b></h1>
+                      <p class="description">{{ event['desc'] }}</p>
+                      <a href="/ViewEvent/{{event['id']}}"><button class="btn button1">View Event</button></a>
+                    </div>
+                  </div>
+                {% endfor %}
+                {% endif %}
+
+                
+            </div>
+        </section>
+    <section>
+            <div class="title">
+                <h1>How Let's Meet works</h1>
+            </div>
+            <p style="text-align: center; margin-bottom: 40px;">Meet New People who share your interests through online!</p>
+            <div class="working">
+                <div class="card">
+                    <div class="w-image"><img src="../static/imgs/find.jpeg" alt=""></div>
+                    <div class="details">
+                      <h1><b>Find Event</b></h1>
+                      <p class="description">Events are happening on just about any topic you can think of, from online gaming and photography to yoga and hiking.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="w-image"><img src="../static/imgs/register.jpeg" alt=""></div>
+                    <div class="details">
+                      <h1><b>Register Event</b></h1>
+                      <p class="description">You can easily register to the events just by one click !</p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="w-image"><img src="../static/imgs/part.jpeg" alt=""></div>
+                    <div class="details">
+                      <h1><b>Participate Event</b></h1>
+                      <p class="description">Participate in the events in which your really interested in!</p>
+
+                    </div>
+                  </div>
+            </div>
+        </section>
+    
+    
+        <footer class="footer">
+            <nav class="footer-nav">
+                <li><a href="#hero-section">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="">LogIn</a></li>
+                <li><a href="#events">Sign Up</a></li>
+            </nav>
+            <ul class="social-media">
+                <a href="https://www.linkedin.com/in/rakheeb-ahmad-6a29a1239/" target="_blank">
+                    <li><i class="fa-brands fa-linkedin-in linkedin"></i></li>
+                </a>
+                <a href="https://github.com/RAKHEEBAHMAD" target="_blank">
+                    <li><i class="fa-brands fa-github github"></i></li>
+                </a>
+                <a href="https://www.instagram.com/rakhiiib/" target="_blank">
+                    <li><i class="fa-brands fa-instagram instagram"></i></li>
+                </a>
+                <a href="mailto:rakheeb1905@gmail.com" target="_blank">
+                    <li><i class="fa-solid fa-envelope gmail"></i></li>
+                </a>
+            </ul>
+            
+      </footer>
+    
+    
+          <!-- footer section -->
+          <!-- Remove the container if you want to extend the Footer to full width. -->
+
+    
+          <div id="scroll-top" onclick="scrolltop()">
+            <span><i class="fa-solid fa-arrow-up"></i></span>
+          </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://kit.fontawesome.com/a894369998.js" crossorigin="anonymous"></script>
+    <script src="../static/js/script.js"></script>
+<script type="module" src="../static/js/date-picker.js"></script>
+</body>
+</html>

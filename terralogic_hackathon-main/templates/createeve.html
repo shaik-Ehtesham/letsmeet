@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Login Form</title>
+    <link rel="stylesheet" href="../static/css/createeve.css">
+      <link href="../static/css/landingpage.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../static/imgs/Logo.jpg">
+    <link rel="stylesheet" media="screen and (max-width: 700px)" href="../static/css/responsive.css">
+</head>
+<body>
+    <div class="container">
+             <section class="nav-bar" id="nav-bar">
+            <div class="left-name">
+                <h1 class="name"><span class="red">L</span>et's <span class="red">M</span>eet</h1>
+            </div>
+            <input type="checkbox" id="check">
+            <label class="checkbtn" for="check">
+                <i class="fa fa-bars" ></i>
+            </label>
+            <nav class="right-nav">
+                    <li><a href="/CreateEvent/">Create Event</a></li>
+                    <li><a href="/MyEvents/">My Events</a></li>
+                    <li><a href="/">Events</a></li>
+                    {% if not login_status %}
+                    <li><a href="/login/" >Login</a></li>
+                    <li><a href="/signup/">Sign Up</a></li>
+                    {% else %}
+                    <li><a href="/signout/">SignOut</a></li>
+                    {% endif %}
+            </nav>
+        </section>
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Create Event</h2>
+            </div>
+            <form action="/CreateEvent/" method="post" enctype="multipart/form-data">
+                <div class="uandp">
+                    <div class="form-group">
+            
+                        <input type="text" class="form-control" name="title" placeholder="Enter event name" required>
+                    </div>
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" name="conductedby" placeholder="Enter Organization" required>
+                    </div>
+                    <div class="form-group">
+            
+                        <textarea name="description" id="desc" placeholder="Enter description" class="form-control" cols="30" rows="10" required></textarea>
+                    </div>
+                    <div class="form-group">
+            
+                        <input type="date" class="form-control" name="date" placeholder="Choose the date" required>
+                    </div>
+                    <div class="form-group">
+            
+                        <input type="text" class="form-control" name="address" placeholder="Enter Address of Event" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="eventtype" placeholder="Enter Type Of Event" required>
+                    </div>
+        
+                    <div class="file" data-text="Select your file!">
+                        <label> Upload Logo </label>
+                        <input name="files" type="file">
+                    </div>
+                </div>
+                
+                <div class="subbtn">
+                    <button type="submit" class="btn">Submit</button>
+                </div>
+            
+        
+               
+                
+            </form>
+        </div>
+    </div>
+
+   
+</body>
+</html>

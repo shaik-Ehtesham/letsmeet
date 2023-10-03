@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Sign Up</h2>
+            </div>
+            <form action="/signup/" method="post">
+                <div class="uandp">
+                    <div class="form-group">
+                        <div class="error-msg">
+                            {{msg}}
+                        </div>
+                        <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter your fullname" required>
+                    </div>
+                    <div class="form-group">
+            
+                        <input type="tel" class="form-control" id="mobilenum" name="mobilenum" placeholder="Enter your mobile number" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group">
+            
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email-id" required>
+                        <a class="btn" id="send_otp">Send</a>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="otp" name="otp" placeholder="Enter your OTP" required>
+                        <div class="msg-res">
+                        </div>
+                    </div>
+                    <div class="form-group">
+            
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+            
+                        <input type="password" class="form-control" id="cnfrmpassword" placeholder="confirm password" oninput="confirmpass(this.value)" required>
+                        <div class="msg-res">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subbtn">
+                    <button type="submit" class="btn" id="submit" disabled>Create Account</button>
+                </div>
+                <div class="ddiv">
+                    <p><a href="{{url_for('login')}}" class="dont">Already have an account?</a>
+                    </p>
+                </div>
+        
+               
+                
+            </form>
+        </div>
+    </div>
+
+   
+</body>
+<script>
+    document.getElementById('send_otp').addEventListener('click',function (){
+        const xhttp=new XMLHttpRequest();
+        xhttp.open("POST", '/otpapi/');
+        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    //xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify({"email":document.getElementById('email').value,"name":document.getElementById('fullname').value,"type":"new"}));
+    xhttp.onload=function (){
+        resp_json=JSON.parse(this.responseText);
+        if(resp_json.status){
+            document.getElementById('send_otp').innerText="Sent";
+            document.getElementById('send_otp').disabled=true;
+        }else{
+            document.getElementById('send_otp').innerText="Try Again";
+        }
+    }
+
+    });
+    document.getElementById('otp').onblur=function (){
+        const xhttp=new XMLHttpRequest();
+        xhttp.open("POST", '/otpapi/');
+        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    //xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify({"username":document.getElementById('email').value,"otp":this.value,"type":"verify"}));
+    xhttp.onload=function (){
+        resp_json=JSON.parse(this.responseText);
+        if(resp_json.status){
+            document.getElementsByClassName('msg-res')[0].innerText=resp_json.msg;
+        }else{
+            document.getElementsByClassName('msg-res')[0].innerText=resp_json.msg;
+            this.value='';
+        }
+    }
+    }
+    function confirmpass(passw){
+        if(document.getElementById('password').value!=passw){
+            document.getElementsByClassName('msg-res')[1].innerText='Password not match';
+        }else{
+            document.getElementById('submit').disabled=false;
+            document.getElementsByClassName('msg-res')[1].innerText='Password Matched';
+        }
+    }
+
+</script>
+</html>
