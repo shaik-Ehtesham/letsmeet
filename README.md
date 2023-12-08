@@ -1,2 +1,2 @@
 # letsmeet
-letsMeet is a website which is used to socialize the events
+https://letsmeet-4k3o.onrender.com/
